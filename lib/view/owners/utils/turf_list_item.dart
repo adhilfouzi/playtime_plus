@@ -6,7 +6,7 @@ class TurfListItem extends StatelessWidget {
   final String turfName;
   final String address;
   final String timings;
-  final String status;
+  final bool status;
 
   const TurfListItem({
     super.key,
@@ -32,7 +32,9 @@ class TurfListItem extends StatelessWidget {
               ),
         title: Text(
           turfName,
-          style: TextStyle(fontSize: screenWidth < 600 ? 12 : 18),
+          style: TextStyle(
+            fontSize: screenWidth < 600 ? 12 : 18,
+          ),
         ),
         subtitle: Text(
           address,
@@ -56,8 +58,9 @@ class TurfListItem extends StatelessWidget {
             ),
             SizedBox(width: screenWidth * 0.017),
             Text(
-              status,
-              style: const TextStyle(fontSize: 10),
+              status ? "Active" : "Disable",
+              style: TextStyle(
+                  fontSize: 11, color: status ? Colors.green : Colors.yellow),
             ),
             SizedBox(width: screenWidth * 0.017),
             IconButton(
@@ -80,7 +83,10 @@ class TurfListItem extends StatelessWidget {
           children: [
             Text(timings),
             SizedBox(width: screenWidth * 0.02),
-            Text(status),
+            Text(
+              status ? "Active" : "Disable",
+              style: TextStyle(color: status ? Colors.green : Colors.yellow),
+            ),
             SizedBox(width: screenWidth * 0.02),
             ElevatedButton.icon(
               onPressed: () {

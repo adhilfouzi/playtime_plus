@@ -36,7 +36,7 @@ class TurfListWidget extends StatelessWidget {
                 turfName: turf.courtName,
                 address: turf.courtLocation,
                 timings: '${turf.openingTime} to ${turf.closingTime}',
-                status: "active", // Assuming this is constant for now
+                status: turf.isOwner,
               );
             },
           );
