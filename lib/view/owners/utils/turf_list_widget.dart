@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../view_model/turflist/turflist_bloc.dart';
-import 'turf_list_Item.dart';
+import 'turf_list_item.dart';
 
 class TurfListWidget extends StatelessWidget {
   const TurfListWidget({super.key});
