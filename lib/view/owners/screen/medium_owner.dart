@@ -18,26 +18,30 @@ class MediumOwnerScreen extends StatelessWidget {
           .drawer(screenHeight: screenHeight, context: context, key: 1),
       body: Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: screenHeight * 0.02, vertical: screenWidth * 0.01),
-        child: SingleChildScrollView(
-          child: Row(
-            children: [
-              SizedBox(width: screenWidth * 0.01),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const TurfListSearchField(),
-                    const SizedBox(height: 16),
-                    TableHeaderWidget(screenWidth: screenWidth),
-                    const SizedBox(height: 8),
-                    const TurfListWidget(),
-                    const SizedBox(height: 8),
-                  ],
-                ),
+          horizontal: screenHeight * 0.02,
+          vertical: screenWidth * 0.01,
+        ),
+        child: Row(
+          children: [
+            SizedBox(width: screenWidth * 0.01),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const TurfListSearchField(),
+                  const SizedBox(height: 16),
+                  TableHeaderWidget(screenWidth: screenWidth),
+                  const SizedBox(height: 8),
+                  const Expanded(
+                    child: SingleChildScrollView(
+                      child: TurfListWidget(),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

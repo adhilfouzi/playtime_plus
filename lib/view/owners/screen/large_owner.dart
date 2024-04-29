@@ -23,18 +23,20 @@ class LargeOwnerScreen extends StatelessWidget {
             ),
             const SizedBox(width: 16),
             Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const OwnerHeader(),
-                    const SizedBox(height: 16),
-                    TableHeaderWidget(screenWidth: screenWidth),
-                    const SizedBox(height: 8),
-                    const TurfListWidget(),
-                    const SizedBox(height: 8),
-                  ],
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  const OwnerHeader(),
+                  SizedBox(height: screenHeight * 0.002),
+                  TableHeaderWidget(screenWidth: screenWidth),
+                  SizedBox(height: screenHeight * 0.002),
+                  const Expanded(
+                    child: SingleChildScrollView(
+                      child: TurfListWidget(),
+                    ),
+                  ),
+                  SizedBox(height: screenHeight * 0.002),
+                ],
               ),
             ),
           ],
