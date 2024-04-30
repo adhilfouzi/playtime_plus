@@ -1,4 +1,7 @@
+import 'package:admin_side_turf_application/view/owners/sub/view_owner/screen/view_owner_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../../../model/utils/const/fontsize.dart';
 
 class TurfListItem extends StatelessWidget {
   final double screenWidth;
@@ -23,22 +26,38 @@ class TurfListItem extends StatelessWidget {
     return Card(
       elevation: 4,
       child: ListTile(
+        onTap: () {
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const ViewOwnerScreen()));
+        },
         leading: screenWidth < 600
             ? null
             : Container(
                 width: screenWidth * 0.05,
                 height: screenHeight * 0.05,
-                color: Colors.green,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: AspectRatio(
+                    aspectRatio: 16 / 9, // Adjust aspect ratio as needed
+                    child: Image.asset(
+                      "assets/image/turf_image.jpg",
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
               ),
         title: Text(
           turfName,
           style: TextStyle(
-            fontSize: screenWidth < 600 ? 12 : 18,
+            fontSize: ResponsiveFontSize.getFontSize(context),
           ),
         ),
         subtitle: Text(
           address,
-          style: TextStyle(fontSize: screenWidth < 600 ? 8 : 15),
+          style: TextStyle(fontSize: ResponsiveFontSize.getFontSize(context)),
         ),
         trailing: buildTrailing(context),
       ),
@@ -54,13 +73,16 @@ class TurfListItem extends StatelessWidget {
           children: [
             Text(
               timings,
-              style: const TextStyle(fontSize: 10),
+              style: TextStyle(
+                fontSize: ResponsiveFontSize.getFontSize(context),
+              ),
             ),
             SizedBox(width: screenWidth * 0.017),
             Text(
               status ? "Active" : "Disable",
               style: TextStyle(
-                  fontSize: 11, color: status ? Colors.green : Colors.yellow),
+                  fontSize: ResponsiveFontSize.getFontSize(context),
+                  color: status ? Colors.green : Colors.yellow),
             ),
             SizedBox(width: screenWidth * 0.017),
             IconButton(
@@ -85,7 +107,7 @@ class TurfListItem extends StatelessWidget {
             SizedBox(width: screenWidth * 0.02),
             Text(
               status ? "Active" : "Disable",
-              style: TextStyle(color: status ? Colors.green : Colors.yellow),
+              style: TextStyle(color: status ? Colors.green : Colors.redAccent),
             ),
             SizedBox(width: screenWidth * 0.02),
             ElevatedButton.icon(
@@ -93,7 +115,12 @@ class TurfListItem extends StatelessWidget {
                 // Edit action
               },
               icon: const Icon(Icons.edit),
-              label: const Text("Edit"),
+              label: Text(
+                "Edit",
+                style: TextStyle(
+                  fontSize: ResponsiveFontSize.getFontSize(context),
+                ),
+              ),
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.blue,

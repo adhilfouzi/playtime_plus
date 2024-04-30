@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../model/utils/const/fontsize.dart';
+
 class TableHeaderWidget extends StatelessWidget {
   final double screenWidth;
 
@@ -15,14 +17,32 @@ class TableHeaderWidget extends StatelessWidget {
       children: [
         SizedBox(
           width: screenWidth * 0.32,
-          child: const Text(
+          child: Text(
             'Turf Name',
+            style: TextStyle(
+              fontSize: ResponsiveFontSize.getFontSize(context),
+            ),
             textAlign: TextAlign.start,
           ),
         ),
-        const Text('Timings'),
-        const Text('Status'),
-        const Text('Edit'),
+        Text(
+          'Timings',
+          style: TextStyle(
+            fontSize: ResponsiveFontSize.getFontSize(context),
+          ),
+        ),
+        Text(
+          'Status',
+          style: TextStyle(
+            fontSize: ResponsiveFontSize.getFontSize(context),
+          ),
+        ),
+        Text(
+          'Edit',
+          style: TextStyle(
+            fontSize: ResponsiveFontSize.getFontSize(context),
+          ),
+        ),
       ],
     );
   }

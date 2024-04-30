@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../model/utils/const/fontsize.dart';
 import '../../homescreen/screen/homescreen.dart';
 
 class LoginButton extends StatelessWidget {
@@ -37,10 +38,12 @@ class LoginButton extends StatelessWidget {
         padding: EdgeInsets.symmetric(
           vertical: screenHeight * 0.005,
         ),
-        child: const Text(
+        child: Text(
           'Log in',
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 18, color: Colors.black),
+          style: TextStyle(
+              fontSize: ResponsiveFontSize.getFontSize(context),
+              color: Colors.black),
         ),
       ),
     );

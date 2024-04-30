@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../model/utils/const/fontsize.dart';
+
 class CustomColor {
   static const Color darksecondarycolor = Colors.black;
   static const Color mainColor = Colors.blue;
@@ -20,11 +22,11 @@ class OwnerHeader extends StatelessWidget {
         ),
         child: Row(
           children: [
-            const Text(
+            Text(
               'Turf List',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 18,
+                fontSize: ResponsiveFontSize.getFontSize(context),
                 fontWeight: FontWeight.bold,
               ),
             ),

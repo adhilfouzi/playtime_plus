@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../model/controller/validator.dart';
+import '../../../model/utils/const/fontsize.dart';
 import '../../../model/utils/portion/textfield.dart';
 import 'forgetpassword.dart';
 import 'login_button.dart';
@@ -35,7 +36,8 @@ class LoginForm extends StatelessWidget {
             'Login',
             style: TextStyle(
               color: isDarkMode ? Colors.blueAccent : Colors.blue,
-              fontSize: 24,
+              fontSize: ResponsiveFontSize.getFontSize(context,
+                  styleType: TextStyleType.h1),
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,

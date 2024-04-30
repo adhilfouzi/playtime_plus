@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../model/utils/const/colors.dart';
 import '../../../model/utils/const/image_name.dart';
+import '../../model/utils/const/fontsize.dart';
 import '../homescreen/screen/homescreen.dart';
 import '../login/screen/login_screen.dart';
 import '../owners/screen/owners_screen.dart';
@@ -109,6 +110,8 @@ class HomeWidget {
       title: Text(
         title,
         style: TextStyle(
+            fontSize: ResponsiveFontSize.getFontSize(context,
+                styleType: TextStyleType.h3),
             color: isSelected
                 ? Colors.blue
                 : Colors.white), // Set title text color

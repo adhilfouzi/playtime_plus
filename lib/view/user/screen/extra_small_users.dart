@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../model/utils/const/fontsize.dart';
 import '../../utils/home_widget.dart';
 
 class ExtraSmallUsersScreen extends StatelessWidget {
@@ -16,17 +17,19 @@ class ExtraSmallUsersScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
+            Text(
               'Screen Size: ExtraSmall',
               style: TextStyle(
-                fontSize: 18,
+                fontSize: ResponsiveFontSize.getFontSize(context),
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 10),
             Text(
               'Width: $screenWidth\nHeight: $screenHeight',
-              style: const TextStyle(fontSize: 16),
+              style: TextStyle(
+                fontSize: ResponsiveFontSize.getFontSize(context),
+              ),
               textAlign: TextAlign.center,
             ),
           ],

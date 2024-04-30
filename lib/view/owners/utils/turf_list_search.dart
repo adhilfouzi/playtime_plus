@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../model/utils/const/fontsize.dart';
+
 class CustomColor {
   static const Color darksecondarycolor = Colors.black;
 }
@@ -21,7 +23,11 @@ class TurfListAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: CustomColor.darksecondarycolor,
       title: Text(
         title,
-        style: const TextStyle(color: Colors.white),
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: ResponsiveFontSize.getFontSize(context,
+              styleType: TextStyleType.h1),
+        ),
       ),
       actions: [
         IconButton(

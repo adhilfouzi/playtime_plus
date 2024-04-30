@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../model/utils/const/fontsize.dart';
 import '../../utils/home_widget.dart';
 
 class LargeUsersScreen extends StatelessWidget {
@@ -27,17 +28,19 @@ class LargeUsersScreen extends StatelessWidget {
                       child: HomeWidget().appbar(title: 'Users')),
                   const SizedBox(
                       height: 16), // Add spacing between appbar and text
-                  const Text(
+                  Text(
                     'Screen Size: Large',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: ResponsiveFontSize.getFontSize(context),
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 10),
                   Text(
                     'Width: $screenWidth\nHeight: $screenHeight',
-                    style: const TextStyle(fontSize: 16),
+                    style: TextStyle(
+                      fontSize: ResponsiveFontSize.getFontSize(context),
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ],
