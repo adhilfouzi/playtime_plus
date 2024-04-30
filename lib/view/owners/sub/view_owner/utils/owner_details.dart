@@ -1,61 +1,60 @@
+import 'dart:developer';
+
+import 'package:admin_side_turf_application/model/data_model/owner_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../model/utils/const/colors.dart';
-import '../../../../../model/utils/const/fontsize.dart';
+import '../../../../../view_model/turf_details/turf_details_bloc.dart';
+import 'owner_details_widget.dart';
 
 class TurfDetails extends StatelessWidget {
   const TurfDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    return BlocBuilder<TurfDetailsBloc, TurfDetailsState>(
+      builder: (context, state) {
+        if (state is TurfDetailsLoading) {
+          return const CircularProgressIndicator();
+        } else if (state is TurfDetailsLoaded) {
+          final turfDetails = state.turfDetails;
+          log(turfDetails.courtName);
 
-    return Scaffold(
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SectionTitle(title: 'Court Information'),
-            SizedBox(height: screenHeight * 0.02),
-            const CourtDetails(),
-            SizedBox(height: screenHeight * 0.02),
-            const SectionTitle(title: 'Owner Information'),
-            SizedBox(height: screenHeight * 0.02),
-            const OwnerDetails(),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class SectionTitle extends StatelessWidget {
-  final String title;
-
-  const SectionTitle({super.key, required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    // final screenWidth = MediaQuery.of(context).size.width;
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
-      child: Text(
-        title,
-        style: TextStyle(
-          fontSize: ResponsiveFontSize.getFontSize(context,
-              styleType: TextStyleType.h2),
-          // screenWidth > 600 ? 24.0 : (screenWidth > 360 ? 20 : 15),
-          fontWeight: FontWeight.bold,
-          color: CustomColor.mainColor,
-        ),
-      ),
+          return Scaffold(
+            body: SingleChildScrollView(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SectionTitle(title: 'Court Information'),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                  CourtDetails(turfDetails: turfDetails),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                  const SectionTitle(title: 'Owner Information'),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                  OwnerDetails(turfDetails: turfDetails),
+                ],
+              ),
+            ),
+          );
+        } else if (state is TurfDetailsError) {
+          return Center(
+            child: Text(state.message),
+          );
+        } else {
+          return Container(
+            child: const Center(child: Text("data")),
+          );
+        }
+      },
     );
   }
 }
 
 class CourtDetails extends StatelessWidget {
-  const CourtDetails({super.key});
+  final OwnerModel turfDetails;
+
+  const CourtDetails({super.key, required this.turfDetails});
 
   @override
   Widget build(BuildContext context) {
@@ -74,33 +73,33 @@ class CourtDetails extends StatelessWidget {
           children: [
             DetailRow(
                 icon: Icons.person_pin,
-                value: 'Court Name',
+                value: turfDetails.courtName,
                 screenWidth: screenWidth),
             SizedBox(height: screenHeight * 0.02),
             DetailRow(
                 icon: Icons.location_on,
-                value: 'Vazhakkad, Kozhikode',
+                value: turfDetails.courtLocation,
                 screenWidth: screenWidth),
             SizedBox(height: screenHeight * 0.02),
             DetailRow(
                 icon: Icons.phone,
-                value: '9856253686',
+                value: turfDetails.courtPhoneNumber,
                 screenWidth: screenWidth),
             SizedBox(height: screenHeight * 0.02),
             DetailRow(
                 icon: Icons.email,
-                value: 'coalcastle@gmail.com',
+                value: turfDetails.courtEmailAddress,
                 screenWidth: screenWidth),
             SizedBox(height: screenHeight * 0.02),
             DetailRow(
                 icon: Icons.access_time,
-                value: '24H',
+                value:
+                    '${turfDetails.openingTime} to ${turfDetails.closingTime}',
                 screenWidth: screenWidth),
             SizedBox(height: screenHeight * 0.02),
             DetailRow(
               icon: Icons.info,
-              value:
-                  "Vazhakkad and its neighboring areas have produced many state and national players -- U Sharafali (former Indian player), Ijaz Ali (Indian Junior Team), Hanan Javed (Indian Junior Team), Shakkeer Manuppa (former Kerala Blasters), Shabaz Saleel (India U-21). Goal Castle is one of the first artificial turfs in the Malabar region. Good for 5-a-side matches.",
+              value: turfDetails.courtDescription,
               screenWidth: screenWidth,
             ),
           ],
@@ -111,7 +110,8 @@ class CourtDetails extends StatelessWidget {
 }
 
 class OwnerDetails extends StatelessWidget {
-  const OwnerDetails({super.key});
+  final OwnerModel turfDetails;
+  const OwnerDetails({super.key, required this.turfDetails});
 
   @override
   Widget build(BuildContext context) {
@@ -129,59 +129,22 @@ class OwnerDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             DetailRow(
-                icon: Icons.person, value: 'Arshak', screenWidth: screenWidth),
+                icon: Icons.person,
+                value: turfDetails.ownerFullName,
+                screenWidth: screenWidth),
             SizedBox(height: screenHeight * 0.02),
             DetailRow(
                 icon: Icons.phone,
-                value: '8089608089',
+                value: turfDetails.ownerPhoneNumber,
                 screenWidth: screenWidth),
             SizedBox(height: screenHeight * 0.02),
             DetailRow(
                 icon: Icons.email,
-                value: 'arshak@gmail.com',
+                value: turfDetails.ownerEmailAddress,
                 screenWidth: screenWidth),
           ],
         ),
       ),
-    );
-  }
-}
-
-class DetailRow extends StatelessWidget {
-  final IconData icon;
-  final String value;
-  final double screenWidth;
-
-  const DetailRow({
-    super.key,
-    required this.icon,
-    required this.value,
-    required this.screenWidth,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Icon(
-          icon,
-          color: CustomColor.mainColor,
-          size: screenWidth < 600 ? 24.0 : 28.0,
-        ),
-        const SizedBox(width: 16.0),
-        Expanded(
-          child: Text(
-            value,
-            textAlign: TextAlign.justify,
-            style: TextStyle(
-              fontSize: ResponsiveFontSize.getFontSize(context),
-              fontWeight: FontWeight.bold,
-              color: Colors.black87,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

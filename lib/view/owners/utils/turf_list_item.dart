@@ -1,7 +1,12 @@
+import 'dart:developer';
+
 import 'package:admin_side_turf_application/view/owners/sub/view_owner/screen/view_owner_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../model/data_model/owner_model.dart';
 import '../../../model/utils/const/fontsize.dart';
+import '../../../view_model/turf_details/turf_details_bloc.dart';
 
 class TurfListItem extends StatelessWidget {
   final double screenWidth;
@@ -9,6 +14,7 @@ class TurfListItem extends StatelessWidget {
   final String turfName;
   final String address;
   final String timings;
+  final OwnerModel model;
   final bool status;
 
   const TurfListItem({
@@ -19,6 +25,7 @@ class TurfListItem extends StatelessWidget {
     required this.address,
     required this.timings,
     required this.status,
+    required this.model,
   });
 
   @override
@@ -27,6 +34,8 @@ class TurfListItem extends StatelessWidget {
       elevation: 4,
       child: ListTile(
         onTap: () {
+          BlocProvider.of<TurfDetailsBloc>(context).add(FetchTurfId(model));
+          log(model.courtName);
           Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => const ViewOwnerScreen()));
         },

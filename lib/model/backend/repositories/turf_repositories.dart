@@ -12,13 +12,26 @@ class TurfRepository {
     try {
       QuerySnapshot turfSnapshot = await _db.collection("Owner").get();
       turfList.clear();
-
       for (var doc in turfSnapshot.docs) {
         Map<String, dynamic> turfData = doc.data() as Map<String, dynamic>;
         turfList.add(OwnerModel.fromJson(turfData));
       }
 
       return turfList;
+    } catch (e) {
+      throw ExceptionHandler.handleException(e);
+    }
+  }
+
+  /// Function to fetch turf details from Firestore
+  Future<OwnerModel> fetchTurfDetails(String id) async {
+    try {
+      DocumentSnapshot snapshot = await _db.collection("Owner").doc(id).get();
+      if (snapshot.exists) {
+        return OwnerModel.fromSnapshot(snapshot);
+      } else {
+        return OwnerModel.emptyOwnerModel();
+      }
     } catch (e) {
       throw ExceptionHandler.handleException(e);
     }
