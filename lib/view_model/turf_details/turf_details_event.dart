@@ -4,6 +4,6 @@ part of 'turf_details_bloc.dart';
 sealed class TurfDetailsEvent {}
 
 class FetchTurfId extends TurfDetailsEvent {
-  final OwnerModel model;
-  FetchTurfId(this.model);
+  final String id;
+  FetchTurfId(this.id);
 }

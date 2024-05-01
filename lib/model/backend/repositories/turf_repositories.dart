@@ -23,6 +23,24 @@ class TurfRepository {
     }
   }
 
+  Future<List<OwnerModel>> requestedAllTurfDetails() async {
+    try {
+      QuerySnapshot turfSnapshot = await _db.collection("Owner").get();
+      List<OwnerModel> requestedTurfList = [];
+      for (var doc in turfSnapshot.docs) {
+        Map<String, dynamic> turfData = doc.data() as Map<String, dynamic>;
+        var turf = OwnerModel.fromJson(turfData);
+        if (!turf.isRegistered) {
+          requestedTurfList.add(turf);
+        }
+      }
+
+      return requestedTurfList;
+    } catch (e) {
+      throw ExceptionHandler.handleException(e);
+    }
+  }
+
   /// Function to fetch turf details from Firestore
   Future<OwnerModel> fetchTurfDetails(String id) async {
     try {

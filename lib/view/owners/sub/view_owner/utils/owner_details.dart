@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../model/utils/const/colors.dart';
 import '../../../../../view_model/turf_details/turf_details_bloc.dart';
 import 'owner_details_widget.dart';
+import 'turf_status.dart';
 
 class TurfDetails extends StatelessWidget {
   const TurfDetails({super.key});
@@ -15,7 +16,7 @@ class TurfDetails extends StatelessWidget {
     return BlocBuilder<TurfDetailsBloc, TurfDetailsState>(
       builder: (context, state) {
         if (state is TurfDetailsLoading) {
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         } else if (state is TurfDetailsLoaded) {
           final turfDetails = state.turfDetails;
           log(turfDetails.courtName);
@@ -42,9 +43,7 @@ class TurfDetails extends StatelessWidget {
             child: Text(state.message),
           );
         } else {
-          return Container(
-            child: const Center(child: Text("data")),
-          );
+          return const Center(child: Text("data"));
         }
       },
     );
@@ -102,6 +101,10 @@ class CourtDetails extends StatelessWidget {
               value: turfDetails.courtDescription,
               screenWidth: screenWidth,
             ),
+            SizedBox(height: screenHeight * 0.02),
+            OwnerStatusWidget(isOwner: turfDetails.isOwner),
+            SizedBox(height: screenHeight * 0.02),
+            RegistrationStatusWidget(isRegistered: turfDetails.isRegistered),
           ],
         ),
       ),

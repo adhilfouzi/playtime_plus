@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'model/backend/firebase_options.dart';
 import 'view/owners/screen/owners_screen.dart';
+import 'view_model/request_turflist/request_turflist_bloc.dart';
 import 'view_model/turflist/turflist_bloc.dart';
 
 Future<void> main() async {
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (context) => TurflistBloc()),
           BlocProvider(create: (context) => TurfDetailsBloc()),
+          BlocProvider(create: (context) => RequestTurflistBloc()),
           // Add more Bloc providers if needed
         ],
         child: MaterialApp(

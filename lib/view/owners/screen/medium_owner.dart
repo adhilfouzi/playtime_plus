@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../utils/home_widget.dart';
 import '../utils/turf_list_widget.dart';
-import '../utils/turf_list_appbar.dart';
 import '../utils/turf_list_search.dart';
 
 class MediumOwnerScreen extends StatelessWidget {
@@ -24,20 +23,18 @@ class MediumOwnerScreen extends StatelessWidget {
         child: Row(
           children: [
             SizedBox(width: screenWidth * 0.01),
-            Expanded(
+            const Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const TurfListSearchField(),
-                  const SizedBox(height: 16),
-                  TableHeaderWidget(screenWidth: screenWidth),
-                  const SizedBox(height: 8),
-                  const Expanded(
+                  SizedBox(height: 16),
+                  SizedBox(height: 8),
+                  Expanded(
                     child: SingleChildScrollView(
                       child: TurfListWidget(),
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8),
                 ],
               ),
             ),

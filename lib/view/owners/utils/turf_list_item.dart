@@ -35,7 +35,7 @@ class TurfListItem extends StatelessWidget {
       elevation: 4,
       child: ListTile(
         onTap: () {
-          BlocProvider.of<TurfDetailsBloc>(context).add(FetchTurfId(model));
+          BlocProvider.of<TurfDetailsBloc>(context).add(FetchTurfId(model.id));
           log(model.courtName);
           Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => const ViewOwnerScreen()));
