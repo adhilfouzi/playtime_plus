@@ -24,7 +24,7 @@ class NameHeader extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: ResponsiveFontSize.getFontSize(context,
-                    styleType: TextStyleType.h1),
+                    styleType: TextStyleType.h2),
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -44,7 +44,9 @@ class NamedAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: NameHeader(title: title),
+      title: NameHeader(
+        title: title,
+      ),
       // backgroundColor: Colors.transparent,
       elevation: 0, // Removes the shadow
       centerTitle: true,

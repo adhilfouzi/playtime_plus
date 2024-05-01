@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../model/data_model/owner_model.dart';
 import '../../../model/utils/const/fontsize.dart';
 import '../../../view_model/turf_details/turf_details_bloc.dart';
+import '../sub/view_owner/utils/popupmenu_button.dart';
 
 class TurfListItem extends StatelessWidget {
   final double screenWidth;
@@ -76,32 +77,29 @@ class TurfListItem extends StatelessWidget {
   Widget buildTrailing(BuildContext context) {
     if (screenWidth < 600) {
       return SizedBox(
-        width: screenWidth * 0.46,
+        width: screenWidth * 0.45,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               timings,
               style: TextStyle(
-                fontSize: ResponsiveFontSize.getFontSize(context),
+                fontSize: ResponsiveFontSize.getFontSize(context,
+                    styleType: TextStyleType.normal),
               ),
             ),
             SizedBox(width: screenWidth * 0.017),
             Text(
               status ? "Active" : "Disable",
               style: TextStyle(
-                  fontSize: ResponsiveFontSize.getFontSize(context),
-                  color: status ? Colors.green : Colors.yellow),
+                fontSize: ResponsiveFontSize.getFontSize(context,
+                    styleType: TextStyleType.normal),
+                color: status ? Colors.green : Colors.redAccent,
+              ),
             ),
             SizedBox(width: screenWidth * 0.017),
-            IconButton(
-              onPressed: () {
-                // Edit action
-              },
-              icon: const Icon(
-                Icons.edit,
-                color: Colors.white,
-              ),
+            TurfPopupMenuButton(
+              model: model,
             ),
           ],
         ),
@@ -112,31 +110,24 @@ class TurfListItem extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(timings),
+            Text(
+              timings,
+              style: TextStyle(
+                fontSize: ResponsiveFontSize.getFontSize(context,
+                    styleType: TextStyleType.normal),
+              ),
+            ),
             SizedBox(width: screenWidth * 0.02),
             Text(
               status ? "Active" : "Disable",
-              style: TextStyle(color: status ? Colors.green : Colors.redAccent),
+              style: TextStyle(
+                  fontSize: ResponsiveFontSize.getFontSize(context,
+                      styleType: TextStyleType.normal),
+                  color: status ? Colors.green : Colors.redAccent),
             ),
-            SizedBox(width: screenWidth * 0.02),
-            ElevatedButton.icon(
-              onPressed: () {
-                // Edit action
-              },
-              icon: const Icon(Icons.edit),
-              label: Text(
-                "Edit",
-                style: TextStyle(
-                  fontSize: ResponsiveFontSize.getFontSize(context),
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
+            SizedBox(width: screenWidth * 0.017),
+            TurfPopupMenuButton(
+              model: model,
             ),
           ],
         ),
