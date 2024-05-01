@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../view_model/request_turflist/request_turflist_bloc.dart';
-import '../../owners/utils/turf_list_item.dart';
+import '../../../view_model/users_list/users_list_bloc.dart';
+import 'users_list_item.dart';
 
-class RequestTurfList extends StatelessWidget {
-  const RequestTurfList({super.key});
+class UsersListWidget extends StatelessWidget {
+  const UsersListWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RequestTurflistBloc, RequestTurflistState>(
+    return BlocBuilder<UsersListBloc, UsersListState>(
       builder: (context, state) {
-        if (state is RequestTurflistLoading) {
+        if (state is UsersListLoading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state is RequestTurflistLoaded) {
-          final turfList = state.requestTurflist;
+        } else if (state is UsersListLoaded) {
+          final turfList = state.usersList;
 
           if (turfList.isEmpty) {
             return const Center(
@@ -28,25 +29,26 @@ class RequestTurfList extends StatelessWidget {
             itemCount: turfList.length,
             itemBuilder: (context, index) {
               final turf = turfList[index];
-              return TurfListItem(
+              return UserListItem(
                 key: ValueKey(turf.id), // Ensure unique key for each item
                 screenWidth: MediaQuery.of(context).size.width,
                 screenHeight: MediaQuery.of(context).size.height,
-                turfName: turf.courtName,
-                address: turf.courtLocation,
-                timings: turf.courtPhoneNumber,
-                status: turf.isOwner,
+                userName: turf.name,
+                userEmail: turf.email,
+                userNumber: turf.number,
+                userProfile: turf.profile,
+                isUser: turf.isUser,
                 model: turf,
               );
             },
           );
-        } else if (state is RequestTurflistError) {
+        } else if (state is UsersListError) {
           return Center(
             child: Text(state.message),
           );
         } else {
           return const Center(
-            child: Text("Another state"),
+            child: Text("Unknown state"),
           ); // Handle other states if needed
         }
       },

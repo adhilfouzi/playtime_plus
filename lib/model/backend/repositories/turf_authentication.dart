@@ -34,11 +34,24 @@ class TurfAuthentication {
 
   /// Update a isOwner field in a user's collection
   Future<void> ownerAccountStatus(
-      {required String ownerId, required dynamic value}) async {
+      {required String ownerId, required bool value}) async {
     try {
       bool val = value ? false : true;
       await _db.collection("Owner").doc(ownerId).update({
         "isOwner": val,
+      });
+    } catch (e) {
+      throw ExceptionHandler.handleException(e);
+    }
+  }
+
+  /// Update a isOwner field in a user's collection
+  Future<void> userAccountStatus(
+      {required String ownerId, required bool value}) async {
+    try {
+      bool val = value ? false : true;
+      await _db.collection("Users").doc(ownerId).update({
+        "isUser": val,
       });
     } catch (e) {
       throw ExceptionHandler.handleException(e);

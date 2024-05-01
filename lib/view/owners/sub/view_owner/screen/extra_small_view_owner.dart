@@ -1,35 +1,40 @@
 import 'package:flutter/material.dart';
 
 import '../../../../utils/home_widget.dart';
-import '../../../utils/turf_list_search.dart';
+import '../../../../utils/normal_header.dart';
+import '../utils/owner_details.dart';
 
 class ExtraSmallViewOwner extends StatelessWidget {
   const ExtraSmallViewOwner({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: const TurfListAppBar(title: 'Turf Details'),
-      drawer: HomeWidget()
-          .drawer(screenHeight: screenHeight, context: context, key: 1),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      appBar: const NamedAppbar(
+        title: "Turf Details",
+      ),
+      drawer: HomeWidget().drawer(
+        screenHeight: screenHeight,
+        context: context,
+        key: 1,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
           children: [
-            const Text(
-              'Screen Size: ExtraSmall',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  SizedBox(height: screenHeight * 0.002),
+                  const Expanded(
+                    child: TurfDetails(),
+                  ),
+                  SizedBox(height: screenHeight * 0.002),
+                ],
               ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Width: $screenWidth\nHeight: $screenHeight',
-              style: const TextStyle(fontSize: 16),
-              textAlign: TextAlign.center,
             ),
           ],
         ),

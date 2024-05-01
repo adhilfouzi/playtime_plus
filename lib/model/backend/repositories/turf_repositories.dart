@@ -1,3 +1,4 @@
+import 'package:admin_side_turf_application/model/data_model/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../controller/firebase_exceptionhandler.dart';
@@ -18,6 +19,21 @@ class TurfRepository {
       }
 
       return turfList;
+    } catch (e) {
+      throw ExceptionHandler.handleException(e);
+    }
+  }
+
+  Future<List<UserModel>> fetchAllUsersDetails() async {
+    try {
+      QuerySnapshot turfSnapshot = await _db.collection("Users").get();
+      List<UserModel> usersList = [];
+      for (var doc in turfSnapshot.docs) {
+        Map<String, dynamic> turfData = doc.data() as Map<String, dynamic>;
+        usersList.add(UserModel.fromJson(turfData));
+      }
+
+      return usersList;
     } catch (e) {
       throw ExceptionHandler.handleException(e);
     }

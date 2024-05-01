@@ -35,7 +35,7 @@ class TurfListWidget extends StatelessWidget {
                 screenHeight: MediaQuery.of(context).size.height,
                 turfName: turf.courtName,
                 address: turf.courtLocation,
-                timings: '${turf.openingTime} to ${turf.closingTime}',
+                timings: turf.courtPhoneNumber,
                 status: turf.isOwner,
                 model: turf,
               );

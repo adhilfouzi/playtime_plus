@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import '../../../model/utils/const/fontsize.dart';
 import '../../utils/home_widget.dart';
+import '../../utils/normal_header.dart';
+import '../utils/users_list_widget.dart';
 
 class LargeUsersScreen extends StatelessWidget {
   const LargeUsersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+    // final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Padding(
@@ -17,35 +18,26 @@ class LargeUsersScreen extends StatelessWidget {
             HomeWidget().drawer(
               screenHeight: screenHeight,
               context: context,
-              key: 3, // Correct the key according to your implementation
+              key: 3,
             ),
-            const SizedBox(width: 16), // Add spacing between drawer and appbar
+            const SizedBox(width: 16),
             Expanded(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: HomeWidget().appbar(title: 'Users')),
-                  const SizedBox(
-                      height: 16), // Add spacing between appbar and text
-                  Text(
-                    'Screen Size: Large',
-                    style: TextStyle(
-                      fontSize: ResponsiveFontSize.getFontSize(context),
-                      fontWeight: FontWeight.bold,
+                  const NameHeader(
+                    title: "Users List",
+                  ),
+                  SizedBox(height: screenHeight * 0.002),
+                  const Expanded(
+                    child: SingleChildScrollView(
+                      child: UsersListWidget(),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Text(
-                    'Width: $screenWidth\nHeight: $screenHeight',
-                    style: TextStyle(
-                      fontSize: ResponsiveFontSize.getFontSize(context),
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
+                  SizedBox(height: screenHeight * 0.002),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

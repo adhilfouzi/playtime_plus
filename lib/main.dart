@@ -6,6 +6,7 @@ import 'model/backend/firebase_options.dart';
 import 'view/owners/screen/owners_screen.dart';
 import 'view_model/request_turflist/request_turflist_bloc.dart';
 import 'view_model/turflist/turflist_bloc.dart';
+import 'view_model/users_list/users_list_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => TurflistBloc()),
           BlocProvider(create: (context) => TurfDetailsBloc()),
           BlocProvider(create: (context) => RequestTurflistBloc()),
+          BlocProvider(create: (context) => UsersListBloc()),
           // Add more Bloc providers if needed
         ],
         child: MaterialApp(

@@ -1,34 +1,41 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/home_widget.dart';
+import '../../utils/normal_header.dart';
+import '../utils/request_turflist.dart';
 
 class MediumRequestScreen extends StatelessWidget {
   const MediumRequestScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+    // final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: HomeWidget().appbar(title: 'Owners'),
-      drawer: HomeWidget()
-          .drawer(screenHeight: screenHeight, context: context, key: 2),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      appBar: const NamedAppbar(
+        title: "Turf Account Request",
+      ),
+      drawer: HomeWidget().drawer(
+        screenHeight: screenHeight,
+        context: context,
+        key: 2,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
           children: [
-            const Text(
-              'Screen Size: Medium',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  SizedBox(height: screenHeight * 0.002),
+                  const Expanded(
+                    child: RequestTurfList(),
+                  ),
+                  SizedBox(height: screenHeight * 0.002),
+                ],
               ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Width: $screenWidth\nHeight: $screenHeight',
-              style: const TextStyle(fontSize: 16),
-              textAlign: TextAlign.center,
             ),
           ],
         ),

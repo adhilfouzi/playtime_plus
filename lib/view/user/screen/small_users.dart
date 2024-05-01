@@ -1,36 +1,41 @@
 import 'package:flutter/material.dart';
 
-import '../../../model/utils/const/fontsize.dart';
 import '../../utils/home_widget.dart';
+import '../../utils/normal_header.dart';
+import '../utils/users_list_widget.dart';
 
 class SmallUsersScreen extends StatelessWidget {
   const SmallUsersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+    // final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: HomeWidget().appbar(title: 'User'),
-      drawer: HomeWidget()
-          .drawer(screenHeight: screenHeight, context: context, key: 3),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      appBar: const NamedAppbar(
+        title: "Users List",
+      ),
+      drawer: HomeWidget().drawer(
+        screenHeight: screenHeight,
+        context: context,
+        key: 3,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
           children: [
-            Text(
-              'Screen Size: Small',
-              style: TextStyle(
-                fontSize: ResponsiveFontSize.getFontSize(context),
-                fontWeight: FontWeight.bold,
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  SizedBox(height: screenHeight * 0.002),
+                  const Expanded(
+                    child: UsersListWidget(),
+                  ),
+                  SizedBox(height: screenHeight * 0.002),
+                ],
               ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Width: $screenWidth\nHeight: $screenHeight',
-              style:
-                  TextStyle(fontSize: ResponsiveFontSize.getFontSize(context)),
-              textAlign: TextAlign.center,
             ),
           ],
         ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../utils/home_widget.dart';
 import '../utils/turf_list_search.dart';
+import '../utils/turf_list_widget.dart';
 
 class ExtraSmallOwnerScreen extends StatelessWidget {
   const ExtraSmallOwnerScreen({super.key});
@@ -14,22 +15,33 @@ class ExtraSmallOwnerScreen extends StatelessWidget {
       appBar: const TurfListAppBar(title: 'Turf List'),
       drawer: HomeWidget()
           .drawer(screenHeight: screenHeight, context: context, key: 1),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: screenHeight * 0.02,
+          vertical: screenWidth * 0.01,
+        ),
+        child: Row(
           children: [
-            const Text(
-              'Screen Size: ExtraSmall',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+            SizedBox(width: screenWidth * 0.01),
+            const Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 16),
+                  SizedBox(height: 8),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TurfListWidget(),
+                          SizedBox(height: 8),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Width: $screenWidth\nHeight: $screenHeight',
-              style: const TextStyle(fontSize: 16),
-              textAlign: TextAlign.center,
             ),
           ],
         ),
