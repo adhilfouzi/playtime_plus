@@ -62,12 +62,15 @@ class TurfListItem extends StatelessWidget {
         title: Text(
           turfName,
           style: TextStyle(
-            fontSize: ResponsiveFontSize.getFontSize(context),
-          ),
+              fontSize: ResponsiveFontSize.getFontSize(context,
+                  styleType: TextStyleType.h3),
+              fontWeight: FontWeight.w600),
         ),
         subtitle: Text(
           address,
-          style: TextStyle(fontSize: ResponsiveFontSize.getFontSize(context)),
+          style: TextStyle(
+              fontSize: ResponsiveFontSize.getFontSize(context,
+                  styleType: TextStyleType.normal)),
         ),
         trailing: buildTrailing(context),
       ),
@@ -77,27 +80,29 @@ class TurfListItem extends StatelessWidget {
   Widget buildTrailing(BuildContext context) {
     if (screenWidth < 600) {
       return SizedBox(
-        width: screenWidth * 0.45,
+        width: screenWidth * 0.5,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
               timings,
               style: TextStyle(
-                fontSize: ResponsiveFontSize.getFontSize(context,
-                    styleType: TextStyleType.normal),
+                fontSize: ResponsiveFontSize.getFontSize(
+                  context,
+                ),
               ),
             ),
             SizedBox(width: screenWidth * 0.017),
             Text(
               status ? "Active" : "Disable",
               style: TextStyle(
-                fontSize: ResponsiveFontSize.getFontSize(context,
-                    styleType: TextStyleType.normal),
+                fontSize: ResponsiveFontSize.getFontSize(
+                  context,
+                ),
                 color: status ? Colors.green : Colors.redAccent,
               ),
             ),
-            SizedBox(width: screenWidth * 0.017),
+            // SizedBox(width: screenWidth * 0.017),
             TurfPopupMenuButton(
               model: model,
             ),
@@ -108,24 +113,26 @@ class TurfListItem extends StatelessWidget {
       return SizedBox(
         width: screenWidth * 0.41,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
               timings,
               style: TextStyle(
-                fontSize: ResponsiveFontSize.getFontSize(context,
-                    styleType: TextStyleType.normal),
+                fontSize: ResponsiveFontSize.getFontSize(
+                  context,
+                ),
               ),
             ),
             SizedBox(width: screenWidth * 0.02),
             Text(
               status ? "Active" : "Disable",
               style: TextStyle(
-                  fontSize: ResponsiveFontSize.getFontSize(context,
-                      styleType: TextStyleType.normal),
+                  fontSize: ResponsiveFontSize.getFontSize(
+                    context,
+                  ),
                   color: status ? Colors.green : Colors.redAccent),
             ),
-            SizedBox(width: screenWidth * 0.017),
+            // SizedBox(width: screenWidth * 0.017),
             TurfPopupMenuButton(
               model: model,
             ),

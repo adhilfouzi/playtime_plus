@@ -17,7 +17,7 @@ class ExtraSmallViewOwner extends StatelessWidget {
       drawer: HomeWidget().drawer(
         screenHeight: screenHeight,
         context: context,
-        key: 1,
+        key: 2,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

@@ -29,13 +29,13 @@ class ResponsiveFontSize {
         }
       case TextStyleType.h3:
         if (screenWidth < 360) {
-          return 14.0;
+          return 13.0;
         } else if (screenWidth < 600) {
-          return 18.0;
+          return 15.0;
         } else if (screenWidth >= 600 && screenWidth < 900) {
-          return 20.0;
+          return 18.0;
         } else {
-          return 24.0;
+          return 20.0;
         }
       case TextStyleType.normal:
         if (screenWidth < 360) {

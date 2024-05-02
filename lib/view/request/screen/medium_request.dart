@@ -9,8 +9,8 @@ class MediumRequestScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: const NamedAppbar(
         title: "Turf Account Request",
@@ -21,7 +21,8 @@ class MediumRequestScreen extends StatelessWidget {
         key: 2,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.symmetric(
+            horizontal: screenWidth * 0.0002, vertical: screenHeight * 0.0002),
         child: Row(
           children: [
             const SizedBox(width: 16),

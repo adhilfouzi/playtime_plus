@@ -13,6 +13,8 @@ class TurfDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return BlocBuilder<TurfDetailsBloc, TurfDetailsState>(
       builder: (context, state) {
         if (state is TurfDetailsLoading) {
@@ -23,7 +25,9 @@ class TurfDetails extends StatelessWidget {
 
           return Scaffold(
             body: SingleChildScrollView(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.symmetric(
+                  horizontal: screenWidth * 0.0002,
+                  vertical: screenHeight * 0.0002),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -66,7 +70,8 @@ class CourtDetails extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.0),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.symmetric(
+            horizontal: screenWidth * 0.04, vertical: screenHeight * 0.02),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -92,8 +97,9 @@ class CourtDetails extends StatelessWidget {
             SizedBox(height: screenHeight * 0.02),
             DetailRow(
                 icon: Icons.access_time,
-                value:
-                    '${turfDetails.openingTime} to ${turfDetails.closingTime}',
+                value: turfDetails.is24h
+                    ? "24H Open"
+                    : '${turfDetails.openingTime} to ${turfDetails.closingTime}',
                 screenWidth: screenWidth),
             SizedBox(height: screenHeight * 0.02),
             DetailRow(
@@ -127,7 +133,8 @@ class OwnerDetails extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.0),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.symmetric(
+            horizontal: screenWidth * 0.04, vertical: screenHeight * 0.02),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

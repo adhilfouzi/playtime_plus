@@ -9,7 +9,7 @@ class MediumViewOwner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final screenWidth = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: const NamedAppbar(
@@ -18,16 +18,17 @@ class MediumViewOwner extends StatelessWidget {
       drawer: HomeWidget().drawer(
         screenHeight: screenHeight,
         context: context,
-        key: 1,
+        key: 2,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.symmetric(
+            horizontal: screenWidth * 0.005, vertical: screenHeight * 0.005),
         child: Row(
           children: [
-            const SizedBox(width: 16),
+            // SizedBox(height: screenHeight * 0.002),
             Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: screenHeight * 0.002),
                   const Expanded(

@@ -62,9 +62,9 @@ class UserListItem extends StatelessWidget {
         title: Text(
           userName,
           style: TextStyle(
-            fontSize: ResponsiveFontSize.getFontSize(context,
-                styleType: TextStyleType.normal),
-          ),
+              fontSize: ResponsiveFontSize.getFontSize(context,
+                  styleType: TextStyleType.h3),
+              fontWeight: FontWeight.w600),
         ),
         subtitle: Text(
           userNumber,
@@ -81,7 +81,7 @@ class UserListItem extends StatelessWidget {
   Widget buildTrailing(BuildContext context) {
     if (screenWidth < 600) {
       return SizedBox(
-        width: screenWidth * 0.45,
+        width: screenWidth * 0.5,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [

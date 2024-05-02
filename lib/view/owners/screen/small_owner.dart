@@ -17,30 +17,19 @@ class SmallOwnerScreen extends StatelessWidget {
           .drawer(screenHeight: screenHeight, context: context, key: 1),
       body: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: screenHeight * 0.02,
-          vertical: screenWidth * 0.01,
+          horizontal: screenHeight * 0.002,
+          vertical: screenWidth * 0.001,
         ),
-        child: Row(
+        child: const Row(
           children: [
-            SizedBox(width: screenWidth * 0.01),
-            const Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 16),
-                  SizedBox(height: 8),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TurfListWidget(),
-                          SizedBox(height: 8),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TurfListWidget(),
+                  ],
+                ),
               ),
             ),
           ],

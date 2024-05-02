@@ -19,7 +19,7 @@ class LargeViewOwner extends StatelessWidget {
             HomeWidget().drawer(
               screenHeight: screenHeight,
               context: context,
-              key: 1,
+              key: 2,
             ),
             const SizedBox(width: 16),
             Expanded(
