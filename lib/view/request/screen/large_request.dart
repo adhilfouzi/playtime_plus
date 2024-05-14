@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/home_widget.dart';
 import '../../utils/normal_header.dart';
+import '../../utils/screen/drawer.dart';
 import '../utils/request_turflist.dart';
 
 class LargeRequestScreen extends StatelessWidget {
@@ -16,10 +16,9 @@ class LargeRequestScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            HomeWidget().drawer(
+            CustomDrawer(
               screenHeight: screenHeight,
-              context: context,
-              key: 2,
+              drawerKey: 2,
             ),
             const SizedBox(width: 16),
             Expanded(

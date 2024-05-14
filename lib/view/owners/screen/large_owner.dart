@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../utils/home_widget.dart';
 import '../../utils/normal_header.dart';
+import '../../utils/screen/drawer.dart';
 import '../utils/turf_list_widget.dart';
 
 class LargeOwnerScreen extends StatelessWidget {
@@ -15,10 +15,9 @@ class LargeOwnerScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            HomeWidget().drawer(
+            CustomDrawer(
               screenHeight: screenHeight,
-              context: context,
-              key: 1,
+              drawerKey: 1,
             ),
             const SizedBox(width: 16),
             Expanded(

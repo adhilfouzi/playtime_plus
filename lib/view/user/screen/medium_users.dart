@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../utils/home_widget.dart';
 import '../../utils/normal_header.dart';
+import '../../utils/screen/drawer.dart';
 import '../utils/users_list_widget.dart';
 
 class MediumUsersScreen extends StatelessWidget {
@@ -14,10 +14,9 @@ class MediumUsersScreen extends StatelessWidget {
       appBar: const NamedAppbar(
         title: "Users List",
       ),
-      drawer: HomeWidget().drawer(
+      drawer: CustomDrawer(
         screenHeight: screenHeight,
-        context: context,
-        key: 3,
+        drawerKey: 3,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

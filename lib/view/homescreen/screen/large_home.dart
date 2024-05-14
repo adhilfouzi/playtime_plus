@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/home_widget.dart';
+import '../../utils/home_appbar.dart';
+import '../../utils/screen/drawer.dart';
 
 class LargeHomeScreen extends StatelessWidget {
   const LargeHomeScreen({super.key});
@@ -14,10 +15,9 @@ class LargeHomeScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            HomeWidget().drawer(
+            CustomDrawer(
               screenHeight: screenHeight,
-              context: context,
-              key: 0, // Correct the key according to your implementation
+              drawerKey: 0, // Correct the key according to your implementation
             ),
             const SizedBox(width: 16), // Add spacing between drawer and appbar
             Expanded(
@@ -25,7 +25,7 @@ class LargeHomeScreen extends StatelessWidget {
                 children: [
                   ClipRRect(
                       borderRadius: BorderRadius.circular(10),
-                      child: HomeWidget().appbar(title: 'Dashboard')),
+                      child: const HomeAppBar(title: 'Dashboard')),
                   const SizedBox(
                       height: 16), // Add spacing between appbar and text
                   const Text(

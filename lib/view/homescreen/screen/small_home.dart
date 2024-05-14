@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../utils/home_widget.dart';
+import '../../utils/home_appbar.dart';
+import '../../utils/screen/drawer.dart';
 
 class SmallHomeScreen extends StatelessWidget {
   const SmallHomeScreen({super.key});
@@ -10,9 +11,8 @@ class SmallHomeScreen extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: HomeWidget().appbar(title: 'Dashboard'),
-      drawer: HomeWidget()
-          .drawer(screenHeight: screenHeight, context: context, key: 0),
+      appBar: const HomeAppBar(title: 'Dashboard'),
+      drawer: CustomDrawer(screenHeight: screenHeight, drawerKey: 0),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -1,34 +1,36 @@
 import 'package:flutter/material.dart';
 
-import '../../../../utils/home_widget.dart';
 import '../../../../utils/normal_header.dart';
+import '../../../../utils/screen/drawer.dart';
 import '../utils/owner_details.dart';
 
-class LargeViewOwner extends StatelessWidget {
-  const LargeViewOwner({super.key});
+class MediumViewOwner extends StatelessWidget {
+  final int drawerKey;
+
+  const MediumViewOwner({super.key, required this.drawerKey});
 
   @override
   Widget build(BuildContext context) {
-    // final screenWidth = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: const NamedAppbar(
+        title: "Turf Details",
+      ),
+      drawer: CustomDrawer(
+        screenHeight: screenHeight,
+        drawerKey: drawerKey,
+      ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.symmetric(
+            horizontal: screenWidth * 0.005, vertical: screenHeight * 0.005),
         child: Row(
           children: [
-            HomeWidget().drawer(
-              screenHeight: screenHeight,
-              context: context,
-              key: 2,
-            ),
-            const SizedBox(width: 16),
+            // SizedBox(height: screenHeight * 0.002),
             Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const NameHeader(
-                    title: "Turf Details",
-                  ),
                   SizedBox(height: screenHeight * 0.002),
                   const Expanded(
                     child: TurfDetails(),

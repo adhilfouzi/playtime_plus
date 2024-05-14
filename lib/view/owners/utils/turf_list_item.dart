@@ -1,15 +1,16 @@
 import 'dart:developer';
 
-import 'package:admin_side_turf_application/view/owners/sub/view_owner/screen/view_owner_screen.dart';
+import 'package:admin_side_turf_application/view/owners/screen/view_owner/screen/view_owner_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../model/data_model/owner_model.dart';
 import '../../../model/utils/const/fontsize.dart';
 import '../../../view_model/turf_details/turf_details_bloc.dart';
-import '../sub/view_owner/utils/popupmenu_button.dart';
+import '../screen/view_owner/utils/popupmenu_button.dart';
 
 class TurfListItem extends StatelessWidget {
+  final bool isRequest;
   final double screenWidth;
   final double screenHeight;
   final String turfName;
@@ -27,6 +28,7 @@ class TurfListItem extends StatelessWidget {
     required this.timings,
     required this.status,
     required this.model,
+    required this.isRequest,
   });
 
   @override
@@ -37,8 +39,9 @@ class TurfListItem extends StatelessWidget {
         onTap: () {
           BlocProvider.of<TurfDetailsBloc>(context).add(FetchTurfId(model.id));
           log(model.courtName);
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const ViewOwnerScreen()));
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) =>
+                  ViewOwnerScreen(drawerKey: isRequest ? 2 : 1)));
         },
         leading: screenWidth < 600
             ? null
@@ -104,6 +107,7 @@ class TurfListItem extends StatelessWidget {
             ),
             // SizedBox(width: screenWidth * 0.017),
             TurfPopupMenuButton(
+              isRequest: isRequest,
               model: model,
             ),
           ],
@@ -134,6 +138,7 @@ class TurfListItem extends StatelessWidget {
             ),
             // SizedBox(width: screenWidth * 0.017),
             TurfPopupMenuButton(
+              isRequest: isRequest,
               model: model,
             ),
           ],

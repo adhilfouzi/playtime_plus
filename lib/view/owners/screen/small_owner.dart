@@ -1,6 +1,6 @@
+import 'package:admin_side_turf_application/view/utils/screen/drawer.dart';
 import 'package:flutter/material.dart';
 
-import '../../utils/home_widget.dart';
 import '../utils/turf_list_widget.dart';
 import '../utils/turf_list_search.dart';
 
@@ -13,8 +13,7 @@ class SmallOwnerScreen extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: const TurfListAppBar(title: 'Turf List'),
-      drawer: HomeWidget()
-          .drawer(screenHeight: screenHeight, context: context, key: 1),
+      drawer: CustomDrawer(screenHeight: screenHeight, drawerKey: 1),
       body: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: screenHeight * 0.002,

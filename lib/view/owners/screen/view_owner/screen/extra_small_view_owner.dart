@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
 
-import '../../../../utils/home_widget.dart';
 import '../../../../utils/normal_header.dart';
+import '../../../../utils/screen/drawer.dart';
 import '../utils/owner_details.dart';
 
-class SmallViewOwner extends StatelessWidget {
-  const SmallViewOwner({super.key});
+class ExtraSmallViewOwner extends StatelessWidget {
+  final int drawerKey;
+
+  const ExtraSmallViewOwner({super.key, required this.drawerKey});
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: const NamedAppbar(
         title: "Turf Details",
       ),
-      drawer: HomeWidget().drawer(
+      drawer: CustomDrawer(
         screenHeight: screenHeight,
-        context: context,
-        key: 2,
+        drawerKey: drawerKey,
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: screenWidth * 0.005, vertical: screenHeight * 0.005),
+        padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
             const SizedBox(width: 16),

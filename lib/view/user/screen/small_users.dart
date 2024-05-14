@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/home_widget.dart';
 import '../../utils/normal_header.dart';
+import '../../utils/screen/drawer.dart';
 import '../utils/users_list_widget.dart';
 
 class SmallUsersScreen extends StatelessWidget {
@@ -9,16 +9,12 @@ class SmallUsersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: const NamedAppbar(
-        title: "Users List",
-      ),
-      drawer: HomeWidget().drawer(
+      appBar: const NamedAppbar(title: "Users List"),
+      drawer: CustomDrawer(
         screenHeight: screenHeight,
-        context: context,
-        key: 3,
+        drawerKey: 3,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

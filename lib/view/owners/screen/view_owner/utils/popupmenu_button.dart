@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:admin_side_turf_application/view/owners/screen/owners_screen.dart';
+import 'package:admin_side_turf_application/view/request/screen/request_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../model/backend/repositories/turf_authentication.dart';
@@ -8,11 +9,13 @@ import '../../../../../model/data_model/owner_model.dart';
 import '../../../../../model/utils/const/fontsize.dart';
 
 class TurfPopupMenuButton extends StatelessWidget {
+  final bool isRequest;
   final OwnerModel model;
 
   const TurfPopupMenuButton({
     super.key,
     required this.model,
+    required this.isRequest,
   });
   @override
   Widget build(BuildContext context) {
@@ -64,8 +67,13 @@ class TurfPopupMenuButton extends StatelessWidget {
             break;
           case 'Status':
             changeStatus();
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const OwnersScreen()));
+            if (isRequest) {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const RequestScreen()));
+            } else {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const OwnersScreen()));
+            }
             break;
         }
       },

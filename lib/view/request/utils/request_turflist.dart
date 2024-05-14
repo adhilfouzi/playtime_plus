@@ -21,25 +21,31 @@ class RequestTurfList extends StatelessWidget {
             return const Center(
               child: Text("Turfs not available"),
             );
+          } else {
+            return RefreshIndicator(
+              onRefresh: () async {
+                context.read<RequestTurflistBloc>().add(RequesFetchTurfId());
+              },
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: turfList.length,
+                itemBuilder: (context, index) {
+                  final turf = turfList[index];
+                  return TurfListItem(
+                    isRequest: true,
+                    key: ValueKey(turf.id), // Ensure unique key for each item
+                    screenWidth: MediaQuery.of(context).size.width,
+                    screenHeight: MediaQuery.of(context).size.height,
+                    turfName: turf.courtName,
+                    address: turf.courtLocation,
+                    timings: turf.courtPhoneNumber,
+                    status: turf.isOwner,
+                    model: turf,
+                  );
+                },
+              ),
+            );
           }
-
-          return ListView.builder(
-            shrinkWrap: true,
-            itemCount: turfList.length,
-            itemBuilder: (context, index) {
-              final turf = turfList[index];
-              return TurfListItem(
-                key: ValueKey(turf.id), // Ensure unique key for each item
-                screenWidth: MediaQuery.of(context).size.width,
-                screenHeight: MediaQuery.of(context).size.height,
-                turfName: turf.courtName,
-                address: turf.courtLocation,
-                timings: turf.courtPhoneNumber,
-                status: turf.isOwner,
-                model: turf,
-              );
-            },
-          );
         } else if (state is RequestTurflistError) {
           return Center(
             child: Text(state.message),

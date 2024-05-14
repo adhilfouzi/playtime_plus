@@ -24,22 +24,28 @@ class TurfListWidget extends StatelessWidget {
             );
           }
 
-          return ListView.builder(
-            shrinkWrap: true,
-            itemCount: turfList.length,
-            itemBuilder: (context, index) {
-              final turf = turfList[index];
-              return TurfListItem(
-                key: ValueKey(turf.id), // Ensure unique key for each item
-                screenWidth: MediaQuery.of(context).size.width,
-                screenHeight: MediaQuery.of(context).size.height,
-                turfName: turf.courtName,
-                address: turf.courtLocation,
-                timings: turf.courtPhoneNumber,
-                status: turf.isOwner,
-                model: turf,
-              );
+          return RefreshIndicator(
+            onRefresh: () async {
+              context.read<TurflistBloc>().add(FetchTurfList());
             },
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: turfList.length,
+              itemBuilder: (context, index) {
+                final turf = turfList[index];
+                return TurfListItem(
+                  isRequest: false,
+                  key: ValueKey(turf.id), // Ensure unique key for each item
+                  screenWidth: MediaQuery.of(context).size.width,
+                  screenHeight: MediaQuery.of(context).size.height,
+                  turfName: turf.courtName,
+                  address: turf.courtLocation,
+                  timings: turf.courtPhoneNumber,
+                  status: turf.isOwner,
+                  model: turf,
+                );
+              },
+            ),
           );
         } else if (state is TurfError) {
           return Center(

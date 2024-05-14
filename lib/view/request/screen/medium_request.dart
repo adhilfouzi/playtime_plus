@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/home_widget.dart';
 import '../../utils/normal_header.dart';
+import '../../utils/screen/drawer.dart';
 import '../utils/request_turflist.dart';
 
 class MediumRequestScreen extends StatelessWidget {
@@ -15,10 +15,9 @@ class MediumRequestScreen extends StatelessWidget {
       appBar: const NamedAppbar(
         title: "Turf Account Request",
       ),
-      drawer: HomeWidget().drawer(
+      drawer: CustomDrawer(
         screenHeight: screenHeight,
-        context: context,
-        key: 2,
+        drawerKey: 2,
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(

@@ -22,26 +22,31 @@ class UsersListWidget extends StatelessWidget {
             return const Center(
               child: Text("Turfs not available"),
             );
+          } else {
+            return RefreshIndicator(
+              onRefresh: () async {
+                context.read<UsersListBloc>().add(FetchTurfList());
+              },
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: turfList.length,
+                itemBuilder: (context, index) {
+                  final turf = turfList[index];
+                  return UserListItem(
+                    key: ValueKey(turf.id), // Ensure unique key for each item
+                    screenWidth: MediaQuery.of(context).size.width,
+                    screenHeight: MediaQuery.of(context).size.height,
+                    userName: turf.name,
+                    userEmail: turf.email,
+                    userNumber: turf.number,
+                    userProfile: turf.profile,
+                    isUser: turf.isUser,
+                    model: turf,
+                  );
+                },
+              ),
+            );
           }
-
-          return ListView.builder(
-            shrinkWrap: true,
-            itemCount: turfList.length,
-            itemBuilder: (context, index) {
-              final turf = turfList[index];
-              return UserListItem(
-                key: ValueKey(turf.id), // Ensure unique key for each item
-                screenWidth: MediaQuery.of(context).size.width,
-                screenHeight: MediaQuery.of(context).size.height,
-                userName: turf.name,
-                userEmail: turf.email,
-                userNumber: turf.number,
-                userProfile: turf.profile,
-                isUser: turf.isUser,
-                model: turf,
-              );
-            },
-          );
         } else if (state is UsersListError) {
           return Center(
             child: Text(state.message),

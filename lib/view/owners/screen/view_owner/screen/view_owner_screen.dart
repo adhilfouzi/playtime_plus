@@ -7,16 +7,17 @@ import 'medium_view_owner.dart';
 import 'small_view_owner.dart';
 
 class ViewOwnerScreen extends StatelessWidget {
-  const ViewOwnerScreen({super.key});
+  final int drawerKey;
+  const ViewOwnerScreen({super.key, required this.drawerKey});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: ResponsiveLayout(
-          extraSmallBody: ExtraSmallViewOwner(),
-          smallBody: SmallViewOwner(),
-          mediumBody: MediumViewOwner(),
-          largeBody: LargeViewOwner()),
+          extraSmallBody: ExtraSmallViewOwner(drawerKey: drawerKey),
+          smallBody: SmallViewOwner(drawerKey: drawerKey),
+          mediumBody: MediumViewOwner(drawerKey: drawerKey),
+          largeBody: LargeViewOwner(drawerKey: drawerKey)),
     );
   }
 }
