@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../utils/normal_header.dart';
 import '../../../../utils/screen/drawer.dart';
-import '../utils/owner_details.dart';
+import '../utils/turf_details.dart';
 
 class LargeViewOwner extends StatelessWidget {
   final int drawerKey;
