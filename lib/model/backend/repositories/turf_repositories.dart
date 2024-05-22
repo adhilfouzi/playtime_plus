@@ -40,7 +40,7 @@ class TurfRepository {
 
       return usersList;
     } catch (e) {
-      log(e.toString());
+      log("fetch All Users Details:$e");
       throw ExceptionHandler.handleException(e);
     }
   }

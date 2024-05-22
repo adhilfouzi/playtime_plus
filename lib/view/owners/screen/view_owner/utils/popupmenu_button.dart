@@ -9,18 +9,16 @@ import '../../../../../model/data_model/owner_model.dart';
 import '../../../../../model/utils/const/fontsize.dart';
 
 class TurfPopupMenuButton extends StatelessWidget {
-  final bool isRequest;
   final OwnerModel model;
 
   const TurfPopupMenuButton({
     super.key,
     required this.model,
-    required this.isRequest,
   });
   @override
   Widget build(BuildContext context) {
     var status = model.isOwner ? "Disable the account" : "Activate the account";
-
+    var isRequest = model.isRegistered;
     return PopupMenuButton<String>(
       icon: const Icon(
         Icons.more_vert,

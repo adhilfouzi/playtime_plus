@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../controller/formater.dart';
+import 'owner_model.dart';
 
 class UserModel {
   final String id;
@@ -10,7 +10,6 @@ class UserModel {
   final String profile;
   final bool isUser;
 
-  // Updated constructor to accept id
   UserModel({
     required this.id,
     required this.name,
@@ -20,10 +19,9 @@ class UserModel {
     required this.isUser,
   });
 
-  // Factory constructor to create UserModel from JSON data
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      id: json["id"], // Assign id here
+      id: json["id"],
       name: json['name'],
       number: json['number'],
       email: json['email'],
@@ -32,10 +30,9 @@ class UserModel {
     );
   }
 
-  // Create an empty UserModel
   factory UserModel.emptyUserModel() {
     return UserModel(
-      id: '', // Assign empty id here
+      id: '',
       name: '',
       number: '',
       email: '',
@@ -44,10 +41,9 @@ class UserModel {
     );
   }
 
-  // Convert UserModel to a map
   Map<String, dynamic> toMap() {
     return {
-      'id': id, // Include id in the map
+      'id': id,
       'name': name,
       'number': number,
       'email': email,
@@ -56,7 +52,6 @@ class UserModel {
     };
   }
 
-  // Factory constructor to create UserModel from map
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       id: map['id'],
@@ -68,7 +63,6 @@ class UserModel {
     );
   }
 
-  // Convert UserModel to JSON
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -80,22 +74,27 @@ class UserModel {
     };
   }
 
-  // Factory constructor to create UserModel from JSON-like Map
   factory UserModel.fromSnapshot(DocumentSnapshot document) {
     Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+
+    List<OwnerModel> favouritesList = [];
+    if (data['favourite'] != null) {
+      data['favourite'].forEach((v) {
+        favouritesList.add(OwnerModel.fromJson(v));
+      });
+    }
+
     return UserModel(
       id: data['id'] ?? "N/A",
       name: data['name'] ?? "N/A",
       number: data['number'] ?? "N/A",
-      email: data['email'],
+      email: data['email'] ?? "N/A",
       profile: data['profile'] ?? "N/A",
       isUser: data['isUser'] ?? "N/A",
     );
   }
 
-  // Helper function to format phone number
   String get formattedPhoneNo => Formatter.formatPhoneNumber(number);
 
-  // Static function to split full name into first and last name
   static List<String> nameParts(name) => name.split(' ');
 }

@@ -32,14 +32,7 @@ class RequestTurfList extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final turf = turfList[index];
                   return TurfListItem(
-                    isRequest: true,
                     key: ValueKey(turf.id), // Ensure unique key for each item
-                    screenWidth: MediaQuery.of(context).size.width,
-                    screenHeight: MediaQuery.of(context).size.height,
-                    turfName: turf.courtName,
-                    address: turf.courtLocation,
-                    timings: turf.courtPhoneNumber,
-                    status: turf.isOwner,
                     model: turf,
                   );
                 },
