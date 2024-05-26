@@ -8,15 +8,16 @@ class LargeOwnerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.symmetric(
+            horizontal: width * 0.02, vertical: height * 0.025),
         child: Row(
           children: [
             CustomDrawer(
-              screenHeight: screenHeight,
+              screenHeight: height,
               drawerKey: 1,
             ),
             const SizedBox(width: 16),
@@ -27,15 +28,15 @@ class LargeOwnerScreen extends StatelessWidget {
                   const NameHeader(
                     title: "Turf List",
                   ),
-                  SizedBox(height: screenHeight * 0.002),
+                  SizedBox(height: height * 0.002),
                   // TableHeaderWidget(screenWidth: screenWidth),
-                  SizedBox(height: screenHeight * 0.002),
+                  SizedBox(height: height * 0.002),
                   const Expanded(
                     child: SingleChildScrollView(
                       child: TurfListWidget(),
                     ),
                   ),
-                  SizedBox(height: screenHeight * 0.002),
+                  SizedBox(height: height * 0.002),
                 ],
               ),
             ),

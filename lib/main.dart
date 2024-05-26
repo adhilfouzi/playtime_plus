@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'model/backend/firebase_options.dart';
 import 'view/owners/screen/owners_screen.dart';
+import 'view_model/Image_controller/image_controller_bloc.dart';
 import 'view_model/request_turflist/request_turflist_bloc.dart';
 import 'view_model/turflist/turflist_bloc.dart';
 import 'view_model/users_list/users_list_bloc.dart';
@@ -30,6 +31,8 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => TurfDetailsBloc()),
           BlocProvider(create: (context) => RequestTurflistBloc()),
           BlocProvider(create: (context) => UsersListBloc()),
+          BlocProvider(create: (context) => ImageBloc()),
+
           // Add more Bloc providers if needed
         ],
         child: MaterialApp(
