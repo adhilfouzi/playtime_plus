@@ -31,6 +31,7 @@ class TurfListItem extends StatelessWidget {
         title: Text(
           model.courtName,
           style: TextStyle(
+              overflow: TextOverflow.ellipsis,
               fontSize: ResponsiveFontSize.getFontSize(context,
                   styleType: TextStyleType.h3),
               fontWeight: FontWeight.w600),
@@ -38,6 +39,7 @@ class TurfListItem extends StatelessWidget {
         subtitle: Text(
           model.courtLocation,
           style: TextStyle(
+              overflow: TextOverflow.ellipsis,
               fontSize: ResponsiveFontSize.getFontSize(context,
                   styleType: TextStyleType.normal)),
         ),

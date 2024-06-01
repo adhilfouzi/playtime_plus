@@ -20,7 +20,12 @@ class TurfListWidget extends StatelessWidget {
 
           if (turfList.isEmpty) {
             return const Center(
-              child: Text("Turfs not available"),
+              child: Text(
+                "Turfs not available",
+                style: TextStyle(
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
             );
           }
 

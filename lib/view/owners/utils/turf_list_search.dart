@@ -35,35 +35,3 @@ class TurfListAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 }
-
-// class TurfListSearchField extends StatelessWidget {
-//   const TurfListSearchField({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       padding: EdgeInsets.symmetric(
-//           horizontal: MediaQuery.of(context).size.height * 0.02),
-//       decoration: BoxDecoration(
-//         color: Colors.white,
-//         borderRadius: BorderRadius.circular(8),
-//       ),
-//       child: const Row(
-//         children: [
-//           Icon(Icons.search, color: CustomColor.darksecondarycolor),
-//           SizedBox(width: 8),
-//           Expanded(
-//             child: TextField(
-//               decoration: InputDecoration(
-//                 hintText: 'Search turf....',
-//                 hintStyle: TextStyle(color: Colors.grey),
-//                 border: InputBorder.none,
-//               ),
-//               style: TextStyle(color: CustomColor.darksecondarycolor),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

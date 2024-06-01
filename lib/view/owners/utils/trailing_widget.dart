@@ -25,6 +25,7 @@ class TrailingWidget extends StatelessWidget {
             Text(
               model.courtPhoneNumber,
               style: TextStyle(
+                overflow: TextOverflow.ellipsis,
                 fontSize: ResponsiveFontSize.getFontSize(context),
               ),
             ),
@@ -32,6 +33,7 @@ class TrailingWidget extends StatelessWidget {
             Text(
               model.isOwner ? "Active" : "Disabled",
               style: TextStyle(
+                overflow: TextOverflow.ellipsis,
                 fontSize: ResponsiveFontSize.getFontSize(context),
                 color: model.isOwner ? Colors.green : Colors.redAccent,
               ),
@@ -51,6 +53,7 @@ class TrailingWidget extends StatelessWidget {
             Text(
               model.courtPhoneNumber,
               style: TextStyle(
+                overflow: TextOverflow.ellipsis,
                 fontSize: ResponsiveFontSize.getFontSize(context),
               ),
             ),
@@ -58,6 +61,7 @@ class TrailingWidget extends StatelessWidget {
             Text(
               model.isOwner ? "Active" : "Disabled",
               style: TextStyle(
+                overflow: TextOverflow.ellipsis,
                 fontSize: ResponsiveFontSize.getFontSize(context),
                 color: model.isOwner ? Colors.green : Colors.redAccent,
               ),

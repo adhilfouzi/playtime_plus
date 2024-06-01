@@ -28,8 +28,11 @@ class TrailingWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              userEmail,
+              userEmail.length > 10
+                  ? '${userEmail.substring(0, 10)}...'
+                  : userEmail,
               style: TextStyle(
+                overflow: TextOverflow.ellipsis,
                 fontSize: ResponsiveFontSize.getFontSize(context,
                     styleType: TextStyleType.normal),
               ),
@@ -38,6 +41,7 @@ class TrailingWidget extends StatelessWidget {
             Text(
               isUser ? "Active" : "Disable",
               style: TextStyle(
+                overflow: TextOverflow.ellipsis,
                 fontSize: ResponsiveFontSize.getFontSize(context,
                     styleType: TextStyleType.normal),
                 color: isUser ? Colors.green : Colors.redAccent,

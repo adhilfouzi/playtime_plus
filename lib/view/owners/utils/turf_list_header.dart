@@ -101,7 +101,8 @@ class OwnerHeader extends StatelessWidget {
                 SizedBox(width: 8),
                 Text(
                   "Add Turf",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                      overflow: TextOverflow.ellipsis, color: Colors.white),
                 )
               ],
             ),

@@ -23,6 +23,7 @@ class NameHeader extends StatelessWidget {
               title,
               style: TextStyle(
                 color: Colors.white,
+                overflow: TextOverflow.ellipsis,
                 fontSize: ResponsiveFontSize.getFontSize(context,
                     styleType: TextStyleType.h2),
                 fontWeight: FontWeight.bold,

@@ -51,6 +51,7 @@ class UserListItem extends StatelessWidget {
         title: Text(
           userName,
           style: TextStyle(
+              overflow: TextOverflow.ellipsis,
               fontSize: ResponsiveFontSize.getFontSize(context,
                   styleType: TextStyleType.h3),
               fontWeight: FontWeight.w600),
@@ -58,6 +59,7 @@ class UserListItem extends StatelessWidget {
         subtitle: Text(
           userNumber,
           style: TextStyle(
+            overflow: TextOverflow.ellipsis,
             fontSize: ResponsiveFontSize.getFontSize(context,
                 styleType: TextStyleType.normal),
           ),
