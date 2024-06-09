@@ -1,4 +1,3 @@
-import 'package:admin_side_turf_application/view/ads/screens/ads.dart';
 import 'package:flutter/material.dart';
 
 import '../../../model/utils/const/colors.dart';
@@ -73,14 +72,14 @@ class CustomDrawer extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const UsersScreen()),
                 ),
               ),
-              CustomListTile(
-                icon: Icons.ads_click,
-                title: 'Ads',
-                isSelected: drawerKey == 4,
-                onTap: () => Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => const AdsScreen()),
-                ),
-              ),
+              // CustomListTile(
+              //   icon: Icons.ads_click,
+              //   title: 'Ads',
+              //   isSelected: drawerKey == 4,
+              //   onTap: () => Navigator.of(context).pushReplacement(
+              //     MaterialPageRoute(builder: (context) => const AdsScreen()),
+              //   ),
+              // ),
               CustomListTile(
                 icon: Icons.logout,
                 title: 'Logout',
