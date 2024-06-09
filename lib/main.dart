@@ -1,11 +1,12 @@
-import 'package:admin_side_turf_application/view_model/turf_details/turf_details_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'model/backend/firebase_options.dart';
-import 'view/owners/screen/owners_screen.dart';
+import 'view/homescreen/screen/homescreen.dart';
 import 'view_model/Image_controller/image_controller_bloc.dart';
+import 'view_model/overview_bloc/overview_bloc.dart';
 import 'view_model/request_turflist/request_turflist_bloc.dart';
+import 'view_model/turf_details/turf_details_bloc.dart';
 import 'view_model/turflist/turflist_bloc.dart';
 import 'view_model/users_list/users_list_bloc.dart';
 
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => TurflistBloc()),
+          BlocProvider(create: (context) => OverviewBloc()),
           BlocProvider(create: (context) => TurfDetailsBloc()),
           BlocProvider(create: (context) => RequestTurflistBloc()),
           BlocProvider(create: (context) => UsersListBloc()),
@@ -44,7 +46,7 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
             fontFamily: 'Poppins',
           ),
-          home: const OwnersScreen(),
+          home: const HomeScreen(),
         ));
   }
 }

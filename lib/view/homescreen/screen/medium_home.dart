@@ -1,6 +1,10 @@
+import 'package:admin_side_turf_application/view/homescreen/utils/overview_screen.dart';
 import 'package:flutter/material.dart';
-import '../../utils/home_appbar.dart';
+import '../../../view_model/overview_bloc/overview_bloc.dart';
+import '../../owners/utils/turf_list_search.dart';
 import '../../utils/screen/drawer.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MediumHomeScreen extends StatelessWidget {
   const MediumHomeScreen({super.key});
@@ -11,27 +15,38 @@ class MediumHomeScreen extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: const HomeAppBar(title: 'Dashboard'),
+      appBar: const TurfListAppBar(title: 'Dashboard'),
       drawer: CustomDrawer(screenHeight: screenHeight, drawerKey: 0),
-      body: Center(
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: screenHeight * 0.02,
+          vertical: screenWidth * 0.01,
+        ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
-              'Screen Size: Medium',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Width: $screenWidth\nHeight: $screenHeight',
-              style: const TextStyle(fontSize: 16),
-              textAlign: TextAlign.center,
+            SizedBox(height: 16),
+            BlocBuilder<OverviewBloc, OverviewState>(
+              builder: (context, state) {
+                if (state is OverviewLoading) {
+                  return CircularProgressIndicator();
+                } else if (state is OverviewLoaded) {
+                  return TurfOverviewWidget(overviewData: state.overViewModel);
+                } else if (state is OverviewError) {
+                  return Text('Error: ${state.errorMessage}');
+                } else {
+                  return Text('Press the button to load data');
+                }
+              },
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.read<OverviewBloc>().add(OverViewData());
+        },
+        child: Icon(Icons.refresh),
       ),
     );
   }
