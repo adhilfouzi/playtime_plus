@@ -10,11 +10,10 @@ class SmallHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final screenWidth = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-
     return Scaffold(
-      appBar: const TurfListAppBar(title: 'Dashboard'),
+      appBar: TurfListAppBar(title: '$screenWidth'),
       drawer: CustomDrawer(screenHeight: screenHeight, drawerKey: 0),
       body: SingleChildScrollView(
         child: Padding(
@@ -26,26 +25,26 @@ class SmallHomeScreen extends StatelessWidget {
               BlocBuilder<OverviewBloc, OverviewState>(
                 builder: (context, state) {
                   if (state is OverviewLoading) {
-                    return const CircularProgressIndicator();
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
                   } else if (state is OverviewLoaded) {
                     return TurfOverviewWidget(
                         overviewData: state.overViewModel);
                   } else if (state is OverviewError) {
-                    return Text('Error: ${state.errorMessage}');
+                    return Center(
+                      child: Text('Error: ${state.errorMessage}'),
+                    );
                   } else {
-                    return const Text('Press the button to load data');
+                    return const Center(
+                      child: Text('Press the button to load data'),
+                    );
                   }
                 },
               ),
             ],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.read<OverviewBloc>().add(OverViewData());
-        },
-        child: const Icon(Icons.refresh),
       ),
     );
   }

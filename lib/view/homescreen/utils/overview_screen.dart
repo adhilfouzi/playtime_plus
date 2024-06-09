@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-
 import '../../../model/data_model/chart_data_model.dart';
 import '../../../model/data_model/overview_model.dart';
+import 'status_card.dart';
 
 class TurfOverviewWidget extends StatelessWidget {
   final OverViewModel overviewData;
@@ -11,27 +11,24 @@ class TurfOverviewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: EdgeInsets.symmetric(
+        horizontal: screenHeight * 0.02,
+        vertical: screenWidth * 0.01,
+      ),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _buildStatCard("Total Owners", overviewData.totalOwner),
-              _buildStatCard("Total Users", overviewData.totalUser),
-            ],
-          ),
-          const SizedBox(height: 16.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _buildStatCard(
-                  "Today's Booking", overviewData.bookings.length.toString()),
-              _buildStatCard("Today's Payment", overviewData.totalPayment),
-            ],
-          ),
-          const SizedBox(height: 16.0),
+          _buildResponsiveGrid(screenWidth, [
+            StatCard(title: "Total Owners", value: overviewData.totalOwner),
+            StatCard(title: "Total Users", value: overviewData.totalUser),
+            StatCard(
+                title: "Total Bookings",
+                value: overviewData.bookings.length.toString()),
+            StatCard(title: "Total Payments", value: overviewData.totalPayment),
+          ]),
+          // SizedBox(height: screenWidth * 0.04),
           SizedBox(
             height: 300, // Adjust the height according to your needs
             child: SfCartesianChart(
@@ -63,29 +60,22 @@ class TurfOverviewWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildStatCard(String title, String value) {
-    return Expanded(
-      child: Card(
-        elevation: 4,
-        child: Container(
-          color: Colors.black45,
-          width: 150,
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              Text(title,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 16,
-                  )),
-              const SizedBox(height: 8.0),
-              Text(value,
-                  style: const TextStyle(
-                      fontSize: 24, fontWeight: FontWeight.bold)),
-            ],
-          ),
-        ),
+  Widget _buildResponsiveGrid(double screenWidth, List<Widget> children) {
+    int crossAxisCount = screenWidth > 800 ? 4 : 2;
+
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: crossAxisCount,
+        mainAxisSpacing: screenWidth * 0.04,
+        crossAxisSpacing: screenWidth * 0.04,
+        childAspectRatio: 2,
       ),
+      itemCount: children.length,
+      itemBuilder: (context, index) {
+        return children[index];
+      },
     );
   }
 }

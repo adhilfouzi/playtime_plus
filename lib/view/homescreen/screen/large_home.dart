@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../utils/home_appbar.dart';
+import '../../../view_model/overview_bloc/overview_bloc.dart';
+import '../../owners/utils/turf_list_search.dart';
 import '../../utils/screen/drawer.dart';
+import '../utils/overview_screen.dart';
 
 class LargeHomeScreen extends StatelessWidget {
   const LargeHomeScreen({super.key});
@@ -22,24 +25,23 @@ class LargeHomeScreen extends StatelessWidget {
             const SizedBox(width: 16), // Add spacing between drawer and appbar
             Expanded(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: const HomeAppBar(title: 'Dashboard')),
-                  const SizedBox(
-                      height: 16), // Add spacing between appbar and text
-                  const Text(
-                    'Screen Size: Large',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    'Width: $screenWidth\nHeight: $screenHeight',
-                    style: const TextStyle(fontSize: 16),
-                    textAlign: TextAlign.center,
+                  TurfListAppBar(title: '$screenWidth'),
+                  SizedBox(height: 16),
+                  BlocBuilder<OverviewBloc, OverviewState>(
+                    builder: (context, state) {
+                      if (state is OverviewLoading) {
+                        return CircularProgressIndicator();
+                      } else if (state is OverviewLoaded) {
+                        return TurfOverviewWidget(
+                            overviewData: state.overViewModel);
+                      } else if (state is OverviewError) {
+                        return Text('Error: ${state.errorMessage}');
+                      } else {
+                        return Text('Press the button to load data');
+                      }
+                    },
                   ),
                 ],
               ),
