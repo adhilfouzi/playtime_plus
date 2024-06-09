@@ -15,7 +15,7 @@ class MediumHomeScreen extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: TurfListAppBar(title: '$screenWidth'),
+      appBar: TurfListAppBar(title: 'Dashboard'),
       drawer: CustomDrawer(screenHeight: screenHeight, drawerKey: 0),
       body: SingleChildScrollView(
         child: Padding(

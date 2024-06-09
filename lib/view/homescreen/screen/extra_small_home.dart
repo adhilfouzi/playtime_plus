@@ -10,10 +10,9 @@ class ExtraSmallHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: TurfListAppBar(title: screenWidth.toString()),
+      appBar: TurfListAppBar(title: 'Dashboard'),
       drawer: CustomDrawer(screenHeight: screenHeight, drawerKey: 0),
       body: SingleChildScrollView(
         child: Padding(

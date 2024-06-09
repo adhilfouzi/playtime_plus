@@ -11,7 +11,6 @@ class LargeHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Padding(
@@ -27,7 +26,7 @@ class LargeHomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  TurfListAppBar(title: '$screenWidth'),
+                  TurfListAppBar(title: 'Dashboard'),
                   SizedBox(height: 16),
                   BlocBuilder<OverviewBloc, OverviewState>(
                     builder: (context, state) {
