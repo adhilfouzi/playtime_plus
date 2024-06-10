@@ -11,7 +11,6 @@ class LoginContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
@@ -27,24 +26,21 @@ class LoginContainer extends StatelessWidget {
             vertical: screenHeight * 0.0112,
           ),
           decoration: BoxDecoration(
-            color: isDarkMode ? Colors.grey[900] : Colors.white,
+            color: Colors.grey[900],
             borderRadius: BorderRadius.circular(10),
-            boxShadow: isDarkMode
-                ? null
-                : [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 2,
+                blurRadius: 5,
+                offset: const Offset(0, 3),
+              ),
+            ],
           ),
           child: LoginForm(
             formKey: formKey,
             emailController: emailController,
             passwordController: passwordController,
-            isDarkMode: isDarkMode,
             screenWidth: screenWidth,
             screenHeight: screenHeight,
           ),

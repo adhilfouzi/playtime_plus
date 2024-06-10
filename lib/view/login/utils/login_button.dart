@@ -7,13 +7,11 @@ class LoginButton extends StatelessWidget {
   const LoginButton({
     super.key,
     required this.formKey,
-    required this.isDarkMode,
     required this.screenWidth,
     required this.screenHeight,
   });
 
   final GlobalKey<FormState> formKey;
-  final bool isDarkMode;
   final double screenWidth;
   final double screenHeight;
 
@@ -27,8 +25,7 @@ class LoginButton extends StatelessWidget {
         if (formKey.currentState!.validate()) {}
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor:
-            isDarkMode ? const Color.fromRGBO(68, 138, 255, 1) : Colors.blue,
+        backgroundColor: const Color.fromRGBO(68, 138, 255, 1),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),

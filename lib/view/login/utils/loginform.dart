@@ -11,7 +11,6 @@ class LoginForm extends StatelessWidget {
     required this.formKey,
     required this.emailController,
     required this.passwordController,
-    required this.isDarkMode,
     required this.screenWidth,
     required this.screenHeight,
   });
@@ -19,7 +18,6 @@ class LoginForm extends StatelessWidget {
   final GlobalKey<FormState> formKey;
   final TextEditingController emailController;
   final TextEditingController passwordController;
-  final bool isDarkMode;
   final double screenWidth;
   final double screenHeight;
 
@@ -35,7 +33,7 @@ class LoginForm extends StatelessWidget {
           Text(
             'Login',
             style: TextStyle(
-              color: isDarkMode ? Colors.blueAccent : Colors.blue,
+              color: Colors.blueAccent,
               fontSize: ResponsiveFontSize.getFontSize(context,
                   styleType: TextStyleType.h1),
               fontWeight: FontWeight.bold,
@@ -60,13 +58,12 @@ class LoginForm extends StatelessWidget {
             ),
             child: LoginButton(
               formKey: formKey,
-              isDarkMode: isDarkMode,
               screenWidth: screenWidth,
               screenHeight: screenHeight,
             ),
           ),
           SizedBox(height: screenHeight * 0.02),
-          ForgetPasswordLink(isDarkMode: isDarkMode),
+          ForgetPasswordLink(),
           SizedBox(height: screenHeight * 0.02),
         ],
       ),
