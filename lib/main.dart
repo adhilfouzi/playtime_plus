@@ -1,8 +1,10 @@
 import 'package:admin_side_turf_application/view/login/screen/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'model/backend/firebase_options.dart';
+import 'view/homescreen/screen/homescreen.dart';
 import 'view_model/Image_controller/image_controller_bloc.dart';
 import 'view_model/overview_bloc/overview_bloc.dart';
 import 'view_model/request_turflist/request_turflist_bloc.dart';
@@ -26,6 +28,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
+
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => TurflistBloc()),
@@ -44,7 +48,7 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
             fontFamily: 'Poppins',
           ),
-          home: const LoginScreen(),
+          home: user != null ? const HomeScreen() : const LoginScreen(),
         ));
   }
 }

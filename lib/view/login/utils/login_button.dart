@@ -1,28 +1,48 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
+import '../../../model/backend/manager/firebase_authentication.dart';
 import '../../../model/utils/const/fontsize.dart';
+import '../../../model/utils/portion/snackbar.dart';
 import '../../homescreen/screen/homescreen.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({
     super.key,
     required this.formKey,
-    required this.screenWidth,
-    required this.screenHeight,
+    required this.emailController,
+    required this.passwordController,
   });
 
   final GlobalKey<FormState> formKey;
-  final double screenWidth;
-  final double screenHeight;
-
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
     return ElevatedButton(
-      onPressed: () {
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (contax) => const HomeScreen(),
-        ));
-        if (formKey.currentState!.validate()) {}
+      onPressed: () async {
+        if (!formKey.currentState!.validate()) return;
+        log('Formkey validate');
+        var isAdmin = await AuthenticationRepository()
+            .signInWithEmailAndPassword(
+                emailController.text, passwordController.text);
+        if (isAdmin) {
+          log("SigninSuccess: Admin user");
+          // Navigate to the admin dashboard or appropriate screen
+          // For example:
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (contax) => const HomeScreen(),
+          ));
+        } else {
+          log("SigninSuccess: Regular user");
+          // Handle regular user logic or show an error message
+          // For example:
+          // Get.back();
+          CustomSnackBar.showError(context,
+              'Your account has some issue. Please contact support for assistance.');
+        }
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color.fromRGBO(68, 138, 255, 1),

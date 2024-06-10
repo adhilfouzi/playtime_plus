@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../model/utils/const/colors.dart';
@@ -81,14 +82,17 @@ class CustomDrawer extends StatelessWidget {
               //   ),
               // ),
               CustomListTile(
-                icon: Icons.logout,
-                title: 'Logout',
-                isSelected: drawerKey == 5,
-                onTap: () => Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
-                  (route) => false,
-                ),
-              ),
+                  icon: Icons.logout,
+                  title: 'Logout',
+                  isSelected: drawerKey == 5,
+                  onTap: () {
+                    FirebaseAuth.instance.signOut();
+                    Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => const LoginScreen()),
+                      (route) => false,
+                    );
+                  }),
             ],
           ),
         ),

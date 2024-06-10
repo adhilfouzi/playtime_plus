@@ -45,6 +45,7 @@ class MyTextField extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.01,
           ),
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: controller,
             keyboardType: keyboardType,
             textInputAction: textInputAction,
@@ -119,6 +120,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           TextFormField(
             validator: (value) => InputValidators.validatePassword(value),
             controller: widget.controller,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             keyboardType: widget.keyboardType,
             textInputAction: widget.textInputAction,
             obscureText: obscureText,

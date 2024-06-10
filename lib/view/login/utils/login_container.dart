@@ -41,8 +41,6 @@ class LoginContainer extends StatelessWidget {
             formKey: formKey,
             emailController: emailController,
             passwordController: passwordController,
-            screenWidth: screenWidth,
-            screenHeight: screenHeight,
           ),
         ),
       ),
