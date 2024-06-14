@@ -17,10 +17,16 @@ Play Time Plus (Admin) is a dynamic tool designed to help admins manage users, t
 - **Bloc State Management:** Ensures smooth and responsive state management.
 
 ## Screenshots
+- **Mobile Screen**
+  
+![play time club  Promotional  banner (2)](https://github.com/adhilfouzi/playtime_plus/assets/141894607/ba8acd9c-8073-4e39-8f62-a41067f07c82)
+
+- **Browser Screen**
+  
 ![playtime_pro](https://github.com/adhilfouzi/playtime_pro/assets/141894607/11373479-2ae4-4a8c-b15b-d1b2af0ff4a7)
 
 ## Installation
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Flutter](https://flutter.dev) installed on your computer. From your command line:
+To clone and run this application, you'll need Git and Flutter installed on your computer. From your command line:
 
 ```bash
 # Clone this repository
